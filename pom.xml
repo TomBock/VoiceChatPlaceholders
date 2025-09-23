@@ -20,6 +20,7 @@
     </properties>
 
     <build>
+        <finalName>PhoenixVoiceChatIcon</finalName>
         <defaultGoal>clean package</defaultGoal>
         <plugins>
             <plugin>

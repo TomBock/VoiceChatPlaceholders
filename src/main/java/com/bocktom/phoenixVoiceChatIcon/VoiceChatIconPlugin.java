@@ -19,10 +19,11 @@ public class VoiceChatIconPlugin implements VoicechatPlugin {
 	private static final ConcurrentHashMap<UUID, Long> LAST_PACKET = new ConcurrentHashMap<>();
 	private static final HashSet<UUID> IN_VC = new HashSet<>();
 
-	public static final long TALK_TIMEOUT_MS = 300;
+	private final long TALK_TIMEOUT_MS;
 
 	public VoiceChatIconPlugin(PhoenixVoiceChatIcon plugin) {
 		this.plugin = plugin;
+		TALK_TIMEOUT_MS = plugin.getConfig().getInt("talk_timeout_ms", 300);
 	}
 
 	@Override
@@ -44,22 +45,10 @@ public class VoiceChatIconPlugin implements VoicechatPlugin {
 	@Override
 	public void registerEvents(EventRegistration registration) {
 		getLogger().info("Registering Voicechat events...");
-		/*
-		registration.registerEvent(ServerEvent.class, this::onEvent);
-		registration.registerEvent(EntitySoundPacketEvent.class, this::onEvent);
-		registration.registerEvent(SoundPacketEvent.class, this::onEvent);
-		*/
-		// Registering all other events
+
 		registration.registerEvent(MicrophonePacketEvent.class, this::onMicrophoneEvent);
 		registration.registerEvent(PlayerConnectedEvent.class, this::onJoinEvent);
 		registration.registerEvent(PlayerDisconnectedEvent.class, this::onLeaveEvent);
-		/*
-		registration.registerEvent(StaticSoundPacketEvent.class, this::onEvent);
-		registration.registerEvent(VoicechatServerStartedEvent.class, this::onEvent);
-		registration.registerEvent(VoicechatServerStartingEvent.class, this::onEvent);
-		registration.registerEvent(VoicechatServerStoppedEvent.class, this::onEvent);
-		registration.registerEvent(VoiceHostEvent.class, this::onEvent);
-		*/
 	}
 
 	private void onMicrophoneEvent(MicrophonePacketEvent event) {

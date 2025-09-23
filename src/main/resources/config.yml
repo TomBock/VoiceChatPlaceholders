@@ -2,3 +2,4 @@ talking: ":pepescrem:"
 whispering: "pepetalk:"
 quiet: ":pepequiet:"
 disabled: ":pepesad:"
+talk_timeout_ms: 300 # Time in milliseconds after which the talking icon stops

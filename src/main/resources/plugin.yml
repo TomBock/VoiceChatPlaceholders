@@ -3,8 +3,3 @@ version: '1.0'
 main: com.bocktom.phoenixVoiceChatIcon.PhoenixVoiceChatIcon
 api-version: '1.21'
 depend: [ voicechat, PlaceholderAPI ]
-commands:
-  voicechaticon:
-    description: Opens the Voice Chat Icon GUI
-    usage: /<command>
-    permission: voicechaticon.use
