@@ -35,5 +35,3 @@ whispering: "🔉" # "Player is whispering"
 quiet: "🔈"      # Default state when connected
 disabled: "❌"   # Unconnected, if you don't want to show anything, leave it empty
 ```
-
-## Installation
