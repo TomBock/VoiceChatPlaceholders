@@ -14,7 +14,7 @@ public class VoiceChatIconExpansion extends PlaceholderExpansion {
 
 	@Override
 	public @NotNull String getAuthor() {
-		return "TomBock";
+		return "Tommm";
 	}
 
 	@Override
