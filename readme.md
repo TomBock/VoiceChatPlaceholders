@@ -1,11 +1,19 @@
-# Voice Chat Icon
-Custom Voice Chat Icons for Servers that use [Simple Voice Chat](https://modrinth.com/plugin/simple-voice-chat/)
-and [UnlimitedNameTags](https://www.spigotmc.org/resources/unlimitednametags.117526/) or similar.
-(Default voice chat icons are hidden due to UnlimitedNameTags)
+# Voice Chat Placeholders
+Provides server-wide placeholders for servers using [Simple Voice Chat](https://modrinth.com/plugin/simple-voice-chat/).
+
+These placeholders can be used in nametag plugins such as [UnlimitedNameTags](https://www.spigotmc.org/resources/unlimitednametags.117526/) 
+which replaces the default nametags, or in any other plugin that supports PlaceholderAPI.
+
+This plugin does **not** render icons by itself, it only exposes placeholders.
 
 ## Features
-- Provides placeholders that can be added to the custom nametags
-- Supports icons for talking, whispering, quiet and muted states
+- Exposes `%vcicon%` placeholder
+- For custom icons, create them in your server resource pack and use them in the `config.yml`
+- Supported states:
+  - talking
+  - whispering
+  - quiet
+  - disabled
 
 ## Requirements
 - Paper 1.20+
@@ -16,7 +24,16 @@ and [UnlimitedNameTags](https://www.spigotmc.org/resources/unlimitednametags.117
 ## Placeholders
 | Placeholder | Description                                     |
 |-------------|-------------------------------------------------|
-| `%vcicon%`  | Is replaced with the configured voice chat icon |
+| `%vcicon%`  | Is replaced with the configured voice chat text |
 
 ## Configs
-- _config.yml_ - Main config for icon settings
+
+### config.yml
+```yaml
+talking: "🔊"    # "Player is talking"
+whispering: "🔉" # "Player is whispering"
+quiet: "🔈"      # Default state when connected
+disabled: "❌"   # Unconnected, if you don't want to show anything, leave it empty
+```
+
+## Installation

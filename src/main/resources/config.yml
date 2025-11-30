@@ -1,5 +1,5 @@
-talking: ":pepescrem:"
-whispering: "pepetalk:"
-quiet: ":pepequiet:"
-disabled: ":pepesad:"
-talk_timeout_ms: 300 # Time in milliseconds after which the talking icon stops
+talking: "🔊"
+whispering: "🔉"
+quiet: "🔈"
+disabled: "❌"
+talk_timeout_ms: 300 # Time in milliseconds after which the talking icon stops. 300 works well for most use cases.

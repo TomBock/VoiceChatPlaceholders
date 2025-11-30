@@ -1,5 +1,6 @@
-name: PhoenixVoiceChatIcon
+name: VoiceChatPlaceholders
+author: TomBock
 version: '1.0'
-main: com.bocktom.phoenixVoiceChatIcon.PhoenixVoiceChatIcon
+main: com.bocktom.voicechatplaceholders.VoiceChatPlaceholders
 api-version: '1.21'
 depend: [ voicechat, PlaceholderAPI ]

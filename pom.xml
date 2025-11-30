@@ -5,22 +5,22 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.bocktom</groupId>
-    <artifactId>PhoenixVoiceChatIcon</artifactId>
+    <artifactId>VoiceChatPlaceholders</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
 
-    <name>PhoenixVoiceChatIcon</name>
+    <name>VoiceChatPlaceholders</name>
 
     <properties>
         <java.version>21</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <!-- Custom -->
-        <server.dir>D:/dev/.mcdev/static/server_sp_21_7</server.dir>
+        <server.dir>D:/dev/.mcdev/static/server_sp_21_9</server.dir>
     </properties>
 
     <build>
-        <finalName>PhoenixVoiceChatIcon</finalName>
+        <finalName>VoiceChatPlaceholders</finalName>
         <defaultGoal>clean package</defaultGoal>
         <plugins>
             <plugin>
@@ -97,7 +97,7 @@
         <dependency>
             <groupId>io.papermc.paper</groupId>
             <artifactId>paper-api</artifactId>
-            <version>1.21.7-R0.1-SNAPSHOT</version>
+            <version>1.21.10-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>

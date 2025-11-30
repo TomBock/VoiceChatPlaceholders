@@ -1,4 +1,4 @@
-package com.bocktom.phoenixVoiceChatIcon;
+package com.bocktom.voicechatplaceholders;
 
 public enum EStatus {
 	TALKING("talking"),

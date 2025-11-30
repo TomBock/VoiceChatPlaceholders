@@ -1,4 +1,4 @@
-package com.bocktom.phoenixVoiceChatIcon;
+package com.bocktom.voicechatplaceholders;
 
 import de.maxhenkel.voicechat.api.*;
 import de.maxhenkel.voicechat.api.events.*;
@@ -11,9 +11,9 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import static org.bukkit.Bukkit.getLogger;
 
-public class VoiceChatIconPlugin implements VoicechatPlugin {
+public class VoiceChatPlaceholdersPlugin implements VoicechatPlugin {
 
-	private final PhoenixVoiceChatIcon plugin;
+	private final VoiceChatPlaceholders plugin;
 	private VoicechatServerApi api;
 
 	private static final ConcurrentHashMap<UUID, Long> LAST_PACKET = new ConcurrentHashMap<>();
@@ -21,7 +21,7 @@ public class VoiceChatIconPlugin implements VoicechatPlugin {
 
 	private final long TALK_TIMEOUT_MS;
 
-	public VoiceChatIconPlugin(PhoenixVoiceChatIcon plugin) {
+	public VoiceChatPlaceholdersPlugin(VoiceChatPlaceholders plugin) {
 		this.plugin = plugin;
 		TALK_TIMEOUT_MS = plugin.getConfig().getInt("talk_timeout_ms", 300);
 	}

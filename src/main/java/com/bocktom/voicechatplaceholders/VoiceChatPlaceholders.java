@@ -1,4 +1,4 @@
-package com.bocktom.phoenixVoiceChatIcon;
+package com.bocktom.voicechatplaceholders;
 
 import de.maxhenkel.voicechat.api.BukkitVoicechatService;
 import org.bukkit.command.CommandExecutor;
@@ -6,11 +6,10 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.UUID;
 
-public final class PhoenixVoiceChatIcon extends JavaPlugin implements CommandExecutor {
+public final class VoiceChatPlaceholders extends JavaPlugin implements CommandExecutor {
 
-	public static PhoenixVoiceChatIcon plugin;
-
-	private VoiceChatIconPlugin voicechatPlugin;
+	public static VoiceChatPlaceholders plugin;
+	private VoiceChatPlaceholdersPlugin voicechatPlugin;
 
 	@Override
 	public void onEnable() {
@@ -21,12 +20,13 @@ public final class PhoenixVoiceChatIcon extends JavaPlugin implements CommandExe
 
 		BukkitVoicechatService service = getServer().getServicesManager().load(BukkitVoicechatService.class);
 		if (service != null) {
-			voicechatPlugin = new VoiceChatIconPlugin(this);
+			voicechatPlugin = new VoiceChatPlaceholdersPlugin(this);
 			service.registerPlugin(voicechatPlugin);
-			getLogger().info("PhoenixVoiceChatIcon has been enabled!");
+			getLogger().info("VoiceChatPlaceholders has successfully registered with VoiceChat!");
 		}
 		else {
-			getLogger().severe("Could not load Voicechat service!");
+			getLogger().severe("Could not load VoiceChat service!");
+			getServer().getPluginManager().disablePlugin(this);
 		}
 
 		new VoiceChatIconExpansion().register();

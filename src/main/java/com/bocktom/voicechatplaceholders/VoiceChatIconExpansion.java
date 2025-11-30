@@ -1,14 +1,15 @@
-package com.bocktom.phoenixVoiceChatIcon;
+package com.bocktom.voicechatplaceholders;
 
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class PlayerNameExpansion extends PlaceholderExpansion {
+public class VoiceChatIconExpansion extends PlaceholderExpansion {
+
 	@Override
 	public @NotNull String getIdentifier() {
-		return "player";
+		return "vcicon";
 	}
 
 	@Override
@@ -22,10 +23,10 @@ public class PlayerNameExpansion extends PlaceholderExpansion {
 	}
 
 	@Override
-	public @Nullable String onPlaceholderRequest(Player player, @NotNull String params) {
-		if(params.equals("name")) {
-			return player.getName();
+	public @Nullable String onPlaceholderRequest(Player player, @NotNull String raw) {
+		if(player == null) {
+			return "";
 		}
-		return null;
+		return VoiceChatPlaceholders.plugin.getStatusPlaceholder(player.getUniqueId());
 	}
 }
