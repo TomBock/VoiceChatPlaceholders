@@ -16,7 +16,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <!-- Custom -->
-        <server.dir>D:/dev/.mcdev/static/server_sp_21_9</server.dir>
+        <server.dir>D:/dev/.mcdev/static/server_20_4</server.dir>
     </properties>
 
     <build>
@@ -97,7 +97,7 @@
         <dependency>
             <groupId>io.papermc.paper</groupId>
             <artifactId>paper-api</artifactId>
-            <version>1.21.10-R0.1-SNAPSHOT</version>
+            <version>1.20.6-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
