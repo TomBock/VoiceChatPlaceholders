@@ -1,6 +1,6 @@
-talking: "🔊"
-whispering: "🔉"
-quiet: "🔈"
-disabled: "❌" # when the player is connected but e.g. muted
-not_installed: "🛠️" # when the player does not have the the mod installed
+talking: "🔊"           # Player is talking
+whispering: "🔉"         # Player is whispering
+quiet: ""                # Player is connected but not talking (no icon)
+disabled: "❌"           # Voice chat disabled
+not_installed: "🛠️"     # Voice chat not installed
 talk_timeout_ms: 300 # Time in milliseconds after which the talking icon stops. 300 works well for most use cases.

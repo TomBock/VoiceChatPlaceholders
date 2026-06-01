@@ -4,3 +4,14 @@ version: '1.1'
 main: com.bocktom.voicechatplaceholders.VoiceChatPlaceholders
 api-version: '1.20'
 depend: [ voicechat, PlaceholderAPI ]
+
+commands:
+  vcp:
+    description: VoiceChatPlaceholders admin command
+    usage: /vcp reload
+    permission: voicechatplaceholders.reload
+
+permissions:
+  voicechatplaceholders.reload:
+    description: Allows reloading the VoiceChatPlaceholders configuration
+    default: op

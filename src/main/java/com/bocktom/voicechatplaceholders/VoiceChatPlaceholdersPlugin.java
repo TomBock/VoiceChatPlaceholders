@@ -20,10 +20,19 @@ public class VoiceChatPlaceholdersPlugin implements VoicechatPlugin {
 	private static final ConcurrentHashMap<UUID, Long> LAST_PACKET = new ConcurrentHashMap<>();
 	private static final HashSet<UUID> IN_VC = new HashSet<>();
 
-	private final long TALK_TIMEOUT_MS;
+	private long TALK_TIMEOUT_MS;
 
 	public VoiceChatPlaceholdersPlugin(VoiceChatPlaceholders plugin) {
 		this.plugin = plugin;
+		updateTalkTimeout();
+	}
+
+	public void reloadConfiguration(org.bukkit.configuration.Configuration config) {
+		TALK_TIMEOUT_MS = config.getInt("talk_timeout_ms", 300);
+		getLogger().info("Configuration reloaded. Talk timeout: " + TALK_TIMEOUT_MS + "ms");
+	}
+
+	private void updateTalkTimeout() {
 		TALK_TIMEOUT_MS = plugin.getConfig().getInt("talk_timeout_ms", 300);
 	}
 
@@ -38,7 +47,7 @@ public class VoiceChatPlaceholdersPlugin implements VoicechatPlugin {
 
 		Bukkit.getScheduler().runTaskTimer(plugin, () -> {
 			long now = System.currentTimeMillis();
-			LAST_PACKET.entrySet().removeIf(e -> now - e.getValue() > 10_000); // passive Säuberung
+			LAST_PACKET.entrySet().removeIf(e -> now - e.getValue() > 10_000); // passive cleanup
 		}, 200L, 200L);
 	}
 
