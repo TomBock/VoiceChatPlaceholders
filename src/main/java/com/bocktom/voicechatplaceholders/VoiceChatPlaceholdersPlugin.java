@@ -74,6 +74,11 @@ public class VoiceChatPlaceholdersPlugin implements VoicechatPlugin {
 	}
 
 	public EStatus getStatus(UUID target) {
+		if(api == null) {
+			// placeholder requested between onEnable and VoiceChat calling initialize()
+			return EStatus.DISABLED;
+		}
+
 		VoicechatConnection connection = api.getConnectionOf(target);
 
 		if(connection == null || connection.isDisabled()) {
