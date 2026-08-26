@@ -29,7 +29,7 @@ public class VoiceChatPlaceholdersPlugin implements VoicechatPlugin {
 
 	@Override
 	public String getPluginId() {
-		return "phoenix_voicechat_icon";
+		return "voicechatplaceholders";
 	}
 
 	@Override
@@ -67,10 +67,6 @@ public class VoiceChatPlaceholdersPlugin implements VoicechatPlugin {
 
 	private void onLeaveEvent(PlayerDisconnectedEvent event) {
 		LAST_PACKET.remove(event.getPlayerUuid());
-	}
-
-	private void onEvent(ServerEvent serverEvent) {
-		getLogger().info("Voicechat event: " + serverEvent.getClass().getSimpleName());
 	}
 
 	public EStatus getStatus(UUID target) {
