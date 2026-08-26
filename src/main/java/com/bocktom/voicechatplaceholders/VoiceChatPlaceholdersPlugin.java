@@ -17,7 +17,10 @@ public class VoiceChatPlaceholdersPlugin implements VoicechatPlugin {
 	private final VoiceChatPlaceholders plugin;
 	private VoicechatServerApi api;
 
-	private static final ConcurrentHashMap<UUID, Long> LAST_PACKET = new ConcurrentHashMap<>();
+	/** Last microphone packet we saw from a player, and whether they were whispering. */
+	private record Speaking(long timestamp, boolean whispering) {}
+
+	private static final ConcurrentHashMap<UUID, Speaking> LAST_PACKET = new ConcurrentHashMap<>();
 	private static final HashSet<UUID> IN_VC = new HashSet<>();
 
 	private final long TALK_TIMEOUT_MS;
@@ -38,7 +41,7 @@ public class VoiceChatPlaceholdersPlugin implements VoicechatPlugin {
 
 		Bukkit.getScheduler().runTaskTimer(plugin, () -> {
 			long now = System.currentTimeMillis();
-			LAST_PACKET.entrySet().removeIf(e -> now - e.getValue() > 10_000); // passive Säuberung
+			LAST_PACKET.entrySet().removeIf(e -> now - e.getValue().timestamp() > 10_000); // passive Säuberung
 		}, 200L, 200L);
 	}
 
@@ -63,7 +66,7 @@ public class VoiceChatPlaceholdersPlugin implements VoicechatPlugin {
 		if(player == null)
 			return;
 
-		LAST_PACKET.put(player.getUuid(), System.currentTimeMillis());
+		LAST_PACKET.put(player.getUuid(), new Speaking(System.currentTimeMillis(), event.getPacket().isWhispering()));
 	}
 
 	private void onJoinEvent(PlayerConnectedEvent event) {
@@ -100,13 +103,13 @@ public class VoiceChatPlaceholdersPlugin implements VoicechatPlugin {
 			return EStatus.DISABLED;
 		}
 
-		Long lastPacket = LAST_PACKET.get(target);
-		boolean isTalking = lastPacket != null && (System.currentTimeMillis() - lastPacket) <= TALK_TIMEOUT_MS;
+		Speaking lastPacket = LAST_PACKET.get(target);
+		boolean isTalking = lastPacket != null && (System.currentTimeMillis() - lastPacket.timestamp()) <= TALK_TIMEOUT_MS;
 		if(!isTalking) {
 			return EStatus.QUIET;
 		}
 
-		return player.isSneaking() ? EStatus.WHISPERING : EStatus.TALKING;
+		return lastPacket.whispering() ? EStatus.WHISPERING : EStatus.TALKING;
 	}
 
 	private void onVCStopped(VoicechatServerStoppedEvent voicechatServerStoppedEvent) {
