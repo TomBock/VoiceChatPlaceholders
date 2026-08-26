@@ -29,7 +29,9 @@ public final class VoiceChatPlaceholders extends JavaPlugin implements CommandEx
 			getServer().getPluginManager().disablePlugin(this);
 		}
 
-		new VoiceChatIconExpansion().register();
+		if(!new VoiceChatIconExpansion().register()) {
+			getLogger().severe("Could not register the %vcicon_% placeholder with PlaceholderAPI!");
+		}
 		//new PlayerNameExpansion().register();
 	}
 

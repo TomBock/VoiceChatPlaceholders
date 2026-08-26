@@ -7,7 +7,7 @@ which replaces the default nametags, or in any other plugin that supports Placeh
 This plugin does **not** render icons by itself, it only exposes placeholders.
 
 ## Features
-- Exposes `%vcicon%` placeholder
+- Exposes the `%vcicon_%` placeholder
 - For custom icons, create them in your server resource pack and use them in the `config.yml`
 - Supported states:
   - talking
@@ -22,9 +22,17 @@ This plugin does **not** render icons by itself, it only exposes placeholders.
 - [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/)
 
 ## Placeholders
-| Placeholder | Description                                     |
-|-------------|-------------------------------------------------|
-| `%vcicon%`  | Is replaced with the configured voice chat text |
+| Placeholder       | Description                                     |
+|-------------------|-------------------------------------------------|
+| `%vcicon_%`       | Is replaced with the configured voice chat text |
+| `%vcicon_icon%`   | Same thing, if you prefer a readable parameter  |
+| `%vcicon_status%` | Same thing                                      |
+
+> **Heads up:** PlaceholderAPI 2.12.3 stopped resolving placeholders that do not contain an
+> underscore, so the old `%vcicon%` silently stays unparsed. Add the underscore: `%vcicon_%`.
+
+> Not to be confused with `%voicechat_installed%` and friends - those belong to Simple Voice
+> Chat itself, which registers its own `voicechat` expansion.
 
 ## Configs
 
