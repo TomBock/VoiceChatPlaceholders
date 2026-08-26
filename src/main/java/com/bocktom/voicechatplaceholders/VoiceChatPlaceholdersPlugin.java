@@ -3,10 +3,8 @@ package com.bocktom.voicechatplaceholders;
 import de.maxhenkel.voicechat.api.*;
 import de.maxhenkel.voicechat.api.events.*;
 import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 import org.codehaus.plexus.util.ReflectionUtils;
 
-import java.util.HashSet;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -21,7 +19,6 @@ public class VoiceChatPlaceholdersPlugin implements VoicechatPlugin {
 	private record Speaking(long timestamp, boolean whispering) {}
 
 	private static final ConcurrentHashMap<UUID, Speaking> LAST_PACKET = new ConcurrentHashMap<>();
-	private static final HashSet<UUID> IN_VC = new HashSet<>();
 
 	private final long TALK_TIMEOUT_MS;
 
@@ -51,7 +48,6 @@ public class VoiceChatPlaceholdersPlugin implements VoicechatPlugin {
 		getLogger().info("Registering Voicechat events...");
 
 		registration.registerEvent(MicrophonePacketEvent.class, this::onMicrophoneEvent);
-		registration.registerEvent(PlayerConnectedEvent.class, this::onJoinEvent);
 		registration.registerEvent(PlayerDisconnectedEvent.class, this::onLeaveEvent);
 
 		registration.registerEvent(VoicechatServerStoppedEvent.class, this::onVCStopped);
@@ -69,13 +65,8 @@ public class VoiceChatPlaceholdersPlugin implements VoicechatPlugin {
 		LAST_PACKET.put(player.getUuid(), new Speaking(System.currentTimeMillis(), event.getPacket().isWhispering()));
 	}
 
-	private void onJoinEvent(PlayerConnectedEvent event) {
-		IN_VC.add(event.getConnection().getPlayer().getUuid());
-	}
-
 	private void onLeaveEvent(PlayerDisconnectedEvent event) {
 		LAST_PACKET.remove(event.getPlayerUuid());
-		IN_VC.remove(event.getPlayerUuid());
 	}
 
 	private void onEvent(ServerEvent serverEvent) {
@@ -93,13 +84,7 @@ public class VoiceChatPlaceholdersPlugin implements VoicechatPlugin {
 			return EStatus.NOT_INSTALLED;
 		}
 
-		Player player = Bukkit.getPlayer(target);
-		if(player == null) {
-			return EStatus.DISABLED;
-		}
-
-
-		if(!IN_VC.contains(target)) {
+		if(!connection.isConnected()) {
 			return EStatus.DISABLED;
 		}
 
