@@ -23,6 +23,13 @@ public class VoiceChatIconExpansion extends PlaceholderExpansion {
 	}
 
 	@Override
+	public boolean persist() {
+		// without this the expansion is dropped on /papi reload and every
+		// placeholder stops resolving until the server restarts
+		return true;
+	}
+
+	@Override
 	public @Nullable String onPlaceholderRequest(Player player, @NotNull String raw) {
 		if(player == null) {
 			return "";
