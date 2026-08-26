@@ -27,6 +27,7 @@ public final class VoiceChatPlaceholders extends JavaPlugin implements CommandEx
 		else {
 			getLogger().severe("Could not load VoiceChat service!");
 			getServer().getPluginManager().disablePlugin(this);
+			return;
 		}
 
 		new VoiceChatIconExpansion().register();
