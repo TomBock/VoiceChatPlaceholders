@@ -16,7 +16,7 @@ This plugin does **not** render icons by itself, it only exposes placeholders.
   - disabled
 
 ## Requirements
-- Paper 1.21
+- Paper 1.21.x or 26.x, Java 21 or newer
 - Server Resource Pack that includes the configured icons
 - [Simple Voice Chat](https://modrinth.com/plugin/simple-voice-chat/)
 - [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/)
