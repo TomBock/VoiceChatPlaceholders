@@ -24,6 +24,12 @@ public class VoiceChatIconExpansion extends PlaceholderExpansion {
 
 	@Override
 	public @Nullable String onPlaceholderRequest(Player player, @NotNull String raw) {
+		// PlaceholderAPI 2.12.3 stopped resolving placeholders without an underscore,
+		// so this arrives as %vcicon_% (empty), %vcicon_icon% or %vcicon_status%.
+		if(!raw.isEmpty() && !raw.equalsIgnoreCase("icon") && !raw.equalsIgnoreCase("status")) {
+			return null;
+		}
+
 		if(player == null) {
 			return "";
 		}
