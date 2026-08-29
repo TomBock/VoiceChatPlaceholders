@@ -5,3 +5,13 @@ main: com.bocktom.voicechatplaceholders.VoiceChatPlaceholders
 api-version: '1.21'
 folia-supported: true
 depend: [ voicechat, PlaceholderAPI ]
+
+commands:
+  vcp:
+    description: VoiceChatPlaceholders admin command
+    usage: /vcp reload
+
+permissions:
+  voicechatplaceholders.reload:
+    description: Allows reloading the VoiceChatPlaceholders configuration
+    default: op

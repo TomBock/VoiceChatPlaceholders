@@ -20,11 +20,18 @@ public class VoiceChatPlaceholdersPlugin implements VoicechatPlugin {
 
 	private static final ConcurrentHashMap<UUID, Speaking> LAST_PACKET = new ConcurrentHashMap<>();
 
-	private final long TALK_TIMEOUT_MS;
+	private volatile long talkTimeoutMs;
 
 	public VoiceChatPlaceholdersPlugin(VoiceChatPlaceholders plugin) {
 		this.plugin = plugin;
-		TALK_TIMEOUT_MS = plugin.getConfig().getInt("talk_timeout_ms", 300);
+		reloadSettings();
+	}
+
+	/** Re-reads everything this class caches from the config. */
+	public void reloadSettings() {
+		// volatile: /vcp reload runs on the main thread, the value is read
+		// from the PlaceholderAPI request thread
+		talkTimeoutMs = plugin.getConfig().getInt("talk_timeout_ms", 300);
 	}
 
 	@Override
@@ -94,7 +101,7 @@ public class VoiceChatPlaceholdersPlugin implements VoicechatPlugin {
 		}
 
 		Speaking lastPacket = LAST_PACKET.get(target);
-		boolean isTalking = lastPacket != null && (System.currentTimeMillis() - lastPacket.timestamp()) <= TALK_TIMEOUT_MS;
+		boolean isTalking = lastPacket != null && (System.currentTimeMillis() - lastPacket.timestamp()) <= talkTimeoutMs;
 		if(!isTalking) {
 			return EStatus.QUIET;
 		}
