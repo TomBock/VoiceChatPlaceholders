@@ -27,6 +27,7 @@ public final class VoiceChatPlaceholders extends JavaPlugin implements CommandEx
 		else {
 			getLogger().severe("Could not load VoiceChat service!");
 			getServer().getPluginManager().disablePlugin(this);
+			return;
 		}
 
 		if(!new VoiceChatIconExpansion().register()) {
@@ -37,7 +38,7 @@ public final class VoiceChatPlaceholders extends JavaPlugin implements CommandEx
 
 	public String getStatusPlaceholder(UUID uniqueId) {
 		EStatus status = voicechatPlugin.getStatus(uniqueId);
-		return getConfig().getString(status.key);
+		return getConfig().getString(status.key, "");
 	}
 
 
