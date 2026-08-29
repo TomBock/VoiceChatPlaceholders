@@ -1,6 +1,6 @@
 name: VoiceChatPlaceholders
 author: Tommm
-version: '1.1'
+version: '${project.version}'
 main: com.bocktom.voicechatplaceholders.VoiceChatPlaceholders
-api-version: '1.20'
+api-version: '1.21'
 depend: [ voicechat, PlaceholderAPI ]
