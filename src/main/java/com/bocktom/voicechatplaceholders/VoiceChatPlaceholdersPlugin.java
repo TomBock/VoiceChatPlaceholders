@@ -7,6 +7,7 @@ import org.codehaus.plexus.util.ReflectionUtils;
 
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.TimeUnit;
 
 import static org.bukkit.Bukkit.getLogger;
 
@@ -36,10 +37,14 @@ public class VoiceChatPlaceholdersPlugin implements VoicechatPlugin {
 	public void initialize(VoicechatApi voicechatApi) {
 		api = (VoicechatServerApi) voicechatApi;
 
-		Bukkit.getScheduler().runTaskTimer(plugin, () -> {
+		// This only walks a ConcurrentHashMap - no block, no entity, no world.
+		// So it does not belong on a region thread at all. The async scheduler
+		// exists on both Paper and Folia, so no version check is needed, and the
+		// server cancels the task for us when the plugin is disabled.
+		Bukkit.getAsyncScheduler().runAtFixedRate(plugin, task -> {
 			long now = System.currentTimeMillis();
-			LAST_PACKET.entrySet().removeIf(e -> now - e.getValue().timestamp() > 10_000); // passive Säuberung
-		}, 200L, 200L);
+			LAST_PACKET.entrySet().removeIf(e -> now - e.getValue().timestamp() > 10_000);
+		}, 10L, 10L, TimeUnit.SECONDS);
 	}
 
 
