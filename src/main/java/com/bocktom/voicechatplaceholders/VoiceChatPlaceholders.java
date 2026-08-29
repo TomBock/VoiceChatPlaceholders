@@ -33,7 +33,6 @@ public final class VoiceChatPlaceholders extends JavaPlugin implements CommandEx
 		if(!new VoiceChatIconExpansion().register()) {
 			getLogger().severe("Could not register the %vcicon_% placeholder with PlaceholderAPI!");
 		}
-		//new PlayerNameExpansion().register();
 	}
 
 	public String getStatusPlaceholder(UUID uniqueId) {

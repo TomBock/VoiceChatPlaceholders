@@ -3,7 +3,6 @@ package com.bocktom.voicechatplaceholders;
 import de.maxhenkel.voicechat.api.*;
 import de.maxhenkel.voicechat.api.events.*;
 import org.bukkit.Bukkit;
-import org.codehaus.plexus.util.ReflectionUtils;
 
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
