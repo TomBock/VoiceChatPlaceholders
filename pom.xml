@@ -121,13 +121,13 @@
         <dependency>
             <groupId>io.papermc.paper</groupId>
             <artifactId>paper-api</artifactId>
-            <version>1.21.11-R0.1-SNAPSHOT</version>
+            <version>26.3.build.246-stable</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>de.maxhenkel.voicechat</groupId>
             <artifactId>voicechat-api</artifactId>
-            <version>2.6.0</version>
+            <version>2.6.25</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
